@@ -288,9 +288,7 @@ model.compile(
 )
 
 model.fit(train_dataset)
-# 17005/17005 [==============================] - 3446s 202ms/step - auc_1: 0.6486 - loss_1: 5.3990 - auc_2: 0.6299 - loss_2: 5.4261 - loss: 5.5866 - regularization_loss: 0.0000e+00 - total_loss: 5.5866
 # 17005/17005 [==============================] - 3530s 207ms/step - auc_1: 0.6577 - loss_1: 5.4153 - auc_2: 0.6396 - loss_2: 5.4384 - loss: 5.6063 - regularization_loss: 0.0000e+00 - total_loss: 5.6063
-# 4252/4252 [==============================] - 908s 212ms/step - auc_1: 0.6107 - loss_1: 6.8629 - auc_2: 0.5912 - loss_2: 6.8828 - loss: 7.1887 - regularization_loss: 0.0000e+00 - total_loss: 7.1887
 
 
 # Evaluation
