@@ -1,3 +1,27 @@
+import pickle
+import faiss
+import numpy as np
+
+
+# ANN Search
+d = 64
+nb = 1000000
+nq = 10000
+np.random.seed(1234)
+xb = np.random.random((nb, d)).astype('float32')
+xq = np.random.random((nq, d)).astype('float32')
+
+k = 4
+query_vector = xb[2:3]
+
+
+def find_top_k_nn(query_vector, k):
+    l2_distance = np.power(query_vector - xb, 2).sum(axis=1)
+    index = np.argsort(l2_distance)
+    return l2_distance[index][:k], index[:k]
+
+
+# Two Tower Model
 import math
 import yaml
 import polars as pl
@@ -278,7 +302,7 @@ model = MultiTaskDSSM(
         remove_accidental_hits=False
     ),
     task_weighting_layer=MultiTaskLoss(),
-    regularizaiton_layer=GravityRegularizationLayer(gamma=0.5)
+    regularizaiton_layer=GravityRegularizationLayer(gamma=0.1)
 )
 
 
@@ -323,5 +347,5 @@ test_user_pred = dict(zip(
 
 
 cg_eval(test_user_pred, test_label_dict)
-# R@100: 0.008693028488801323
-# R@1000: 0.07049066059866613
+# R@100: 0.009951101889640025
+# R@1000: 0.07598529111644425
